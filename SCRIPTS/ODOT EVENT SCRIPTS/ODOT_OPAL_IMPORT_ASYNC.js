@@ -193,6 +193,8 @@ if (docListResult.getSuccess()) {
 				editAppSpecific("New Highway Number",vNewHighwayNumber,vProjectCapId);
 				editAppSpecific("Last Name",vLastName,vProjectCapId);
 				editAppSpecific("First Name", vFirstName,vProjectCapId);
+				editAppSpecific("X Coordinate",vLatitude,vProjectCapId);
+				editAppSpecific("Y Coordinate",vLongitude,vProjectCapId);
 
 				/*
 				0 : ODOT HIGHWAY NUMBER
