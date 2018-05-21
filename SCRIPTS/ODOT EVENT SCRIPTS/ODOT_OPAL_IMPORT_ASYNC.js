@@ -112,6 +112,9 @@ if (docListResult.getSuccess()) {
 					}
 				} else {
 					vProjectCapId = createCap("Permits/Highway/Approach/Project", vAddress);
+				}
+				
+				if (vProjectCapId != null && vProjectCapId != "") {
 
 					// Update AltID
 					aa.cap.updateCapAltID(vProjectCapId, vApplicationId);
@@ -142,11 +145,15 @@ if (docListResult.getSuccess()) {
 					vAddrModel.setCapID(vProjectCapId);
 					vAddrModel.setAuditID('ADMIN');
 
+					// Remove existing addresses
+					removeAllCapAddresses(vProjectCapId);
+					
 					// Save the address
 					var vAddrResult = aa.address.createAddress(vAddrModel);
 					if (!vAddrResult.getSuccess()) {
 						aa.print("Failed creating transactional address. " + vAddrResult.getErrorMessage());
 					} else {
+						aa.print("Created transactional address.");
 						vAddrModelArry = aa.address.getAddressWithAttributeByCapId(vProjectCapId);
 						if (vAddrModelArry.getSuccess()) {
 							vAddrModelArry = vAddrModelArry.getOutput();
@@ -177,6 +184,7 @@ if (docListResult.getSuccess()) {
 								}
 								vSaveResult = aa.address.editAddressWithAPOAttribute(vProjectCapId, vAddressModel);
 								aa.print("Address save result: " + vSaveResult.getSuccess());
+								aa.print("Address save result: " + vSaveResult.getErrorMessage());
 							}
 						}
 					}
