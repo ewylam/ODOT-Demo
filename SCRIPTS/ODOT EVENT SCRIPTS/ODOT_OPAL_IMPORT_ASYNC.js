@@ -59,9 +59,9 @@ if (docListResult.getSuccess()) {
 				if (lIndex == 0) {
 					continue;
 				}
-				else if (lIndex > 5) {
-					break;
-				}
+				//else if (lIndex > 5) {
+				//	break;
+				//}
 				thisLine = lineArray[lIndex];
 				thisLine = String(thisLine);
 				thisLine = thisLine.trim();
