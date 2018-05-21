@@ -1,4 +1,5 @@
 var capId = aa.env.getValue("CapId");
+var vUpdate = aa.env.getValue("Update");
 var SCRIPT_VERSION = 3.0;
 aa.env.setValue("CurrentUserID", "ADMIN");
 eval(getScriptText("INCLUDES_ACCELA_FUNCTIONS", null, true));
@@ -22,8 +23,7 @@ function getScriptText(vScriptName, servProvCode, useProductScripts) {
 	}
 }
 
-aa.print("Here in SDOT_Async_Script_90");
-aa.print("Here in SDOT_Async_Script_90");
+aa.print("Here in ODOT_OPAL_IMPORT");
 
 eval(getScriptText("INCLUDES_DATA_LOAD", null, false));
 
@@ -107,6 +107,9 @@ if (docListResult.getSuccess()) {
 				if (vProjectCapId.getSuccess()) {
 					aa.print("Found Existing Record");
 					vProjectCapId = vProjectCapId.getOutput();
+					if (vUpdate != "Yes") {
+						continue;
+					}
 				} else {
 					vProjectCapId = createCap("Permits/Highway/Approach/Project", vAddress);
 
